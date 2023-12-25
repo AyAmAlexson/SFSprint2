@@ -1,6 +1,7 @@
 import environ
 from pathlib import Path
 import os
+from django.core.wsgi import get_wsgi_application
 
 env = environ.Env()
 environ.Env.read_env()
