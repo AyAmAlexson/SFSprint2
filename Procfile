@@ -1,1 +1,1 @@
-web: gunicorn 1Sprint_one.Sprint_One.Sprint_One.wsgi
+web: gunicorn SFSprint2.SFSprint2.wsgi
