@@ -44,7 +44,6 @@ class EditMountainPassView(APIView):
             if mountain_pass.status != 'new':
                 return Response({'status': 0, 'message': 'Нельзя редактировать запись в статусе, отличном от "new".'}, status=status.HTTP_400_BAD_REQUEST)
 
-
             mountain_pass.beauty_title = data['beauty_title']
             mountain_pass.title = data['title']
             mountain_pass.other_titles = data['other_titles']
