@@ -11,7 +11,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'sfsprintapi-25a2a6aeebf2.herokuapp.com',
+]
 
 
 INSTALLED_APPS = [
