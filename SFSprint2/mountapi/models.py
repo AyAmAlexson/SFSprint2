@@ -7,7 +7,6 @@ class User(models.Model):
    name = models.CharField(max_length=30)
    fam = models.CharField(max_length=30)
    otc = models.CharField(max_length=30)
-
    class Meta:
       db_table = 'mountain_user'
 
