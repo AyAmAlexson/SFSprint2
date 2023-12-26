@@ -1,6 +1,6 @@
 from .models import MountainPass, Image, User
 from rest_framework.request import Request as DRFRequest
-from .serializers import MountainPassSerializer
+from .serializers import MountainPassSerializer, UserSerializer
 
 class MountainPassManager:
     @staticmethod
