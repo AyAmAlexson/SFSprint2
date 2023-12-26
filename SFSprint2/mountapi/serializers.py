@@ -2,6 +2,11 @@ from .models import *
 from rest_framework import serializers
 from rest_framework.reverse import reverse
 
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'
+
 class PassImageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Image
@@ -32,9 +37,5 @@ class MountainPassSerializer(serializers.HyperlinkedModelSerializer):
         context = kwargs.pop('context', None)
         super().__init__(*args, **kwargs, context=context)
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = '__all__'
 
 
