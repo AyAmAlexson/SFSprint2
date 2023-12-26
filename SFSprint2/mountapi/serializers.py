@@ -11,16 +11,20 @@ class PassImageSerializer(serializers.HyperlinkedModelSerializer):
            'title',
         ]
 
+
 class MountainPassSerializer(serializers.HyperlinkedModelSerializer):
     images = PassImageSerializer(many=True, read_only=True)
-    detail_url = serializers.HyperlinkedIdentityField(
-        view_name='get_mountain_pass',  # Update this to match your urlpatterns
-        lookup_field='id'
-    )
+    detail_url = serializers.SerializerMethodField()
 
     class Meta:
         model = MountainPass
         fields = '__all__'
+
+    def get_detail_url(self, obj):
+        # Assuming 'get_mountain_pass' is the correct view name in your urlpatterns
+        view_name = 'get_mountain_pass'
+        request = self.context.get('request')
+        return reverse(view_name, kwargs={'id': obj.pk}, request=request)
 
     def __init__(self, *args, **kwargs):
         context = kwargs.pop('context', None)
