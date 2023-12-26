@@ -4,7 +4,7 @@ from .serializers import MountainPassSerializer
 
 class MountainPassManager:
     @staticmethod
-    def submit_data(cls, data, user_id, request=None):
+    def submit_data(data, user_id, request=None):
         try:
             user = User.objects.get(pk=user_id)
 
@@ -39,7 +39,7 @@ class MountainPassManager:
 
 class UserManager:
     @staticmethod
-    def submit_data(cls, data, request=None):
+    def submit_data(data, request=None):
         try:
             new_user = User.objects.create(
                 email=data['email'],

@@ -16,7 +16,7 @@ class SubmitDataView(APIView):
             if not user_id:
                 return Response({'status': 400, 'message': 'Bad Request', 'id': None}, status=status.HTTP_400_BAD_REQUEST)
 
-            result = MountainPassManager.submit_data(cls, data, user_id)
+            result = MountainPassManager.submit_data(data, user_id)
             return Response(result, status=status.HTTP_200_OK)
 
         except json.JSONDecodeError:
@@ -26,7 +26,7 @@ class AddNewUser(APIView):
     def post(self, request, *arg, **kwargs):
         try:
             data = json.loads(request.body.decode('utf-8'))
-            result = UserManager.submit_data(cls, data)
+            result = UserManager.submit_data(data)
             return Response(result, status=status.HTTP_200_OK)
         
         except json.JSONDecodeError:
