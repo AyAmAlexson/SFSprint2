@@ -11,7 +11,7 @@ class SubmitDataView(APIView):
     def post(self, request, *args, **kwargs):
         try:
             data = json.loads(request.body.decode('utf-8'))
-            user_id = data.get('user_id')
+            user_id = data.get('user')
 
             if not user_id:
                 return Response({'status': 400, 'message': 'Bad User ID', 'id': None}, status=status.HTTP_400_BAD_REQUEST)
