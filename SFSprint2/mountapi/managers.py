@@ -48,7 +48,6 @@ class UserManager:
                 fam=data['fam'],
                 otc=data['otc'],
             )
-            
 
             if request and isinstance(request, DRFRequest):
                 context = {'request': request}
