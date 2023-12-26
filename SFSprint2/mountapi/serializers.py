@@ -14,22 +14,14 @@ class PassImageSerializer(serializers.HyperlinkedModelSerializer):
 
 class MountainPassSerializer(serializers.HyperlinkedModelSerializer):
     images = PassImageSerializer(many=True, read_only=True)
-    detail_url = serializers.SerializerMethodField()
+    detail_url = serializers.HyperlinkedIdentityField(
+        view_name='get_mountain_pass',  # Make sure this matches the name in urlpatterns
+        lookup_field='pk'
+    )
 
     class Meta:
         model = MountainPass
         fields = '__all__'
-
-    def get_detail_url(self, obj):
-        request = self.context.get('request')
-        return reverse('get_mountain_pass', kwargs={'id': obj.pk}, request=request)
-
-    def to_representation(self, instance):
-        ret = super().to_representation(instance)
-        # If 'detail_url' is not already in the representation, add it
-        if 'detail_url' not in ret:
-            ret['detail_url'] = self.get_detail_url(instance)
-        return ret
 
     def __init__(self, *args, **kwargs):
         context = kwargs.pop('context', None)
