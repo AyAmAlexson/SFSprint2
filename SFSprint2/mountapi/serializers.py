@@ -5,7 +5,14 @@ from rest_framework.reverse import reverse
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = [
+            'id',
+            'email',
+            'phone',
+            'name',
+            'fam',
+            'otc',
+        ]
 
 class PassImageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
