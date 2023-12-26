@@ -34,7 +34,7 @@ class AddNewUser(APIView):
 
 
 class GetMountainPassView(APIView):
-    def get(self, id, *args, **kwargs):
+    def get(self, request, id, *args, **kwargs):
         mountain_pass = get_object_or_404(MountainPass, pk=id)
         serializer = MountainPassSerializer(mountain_pass)
         return Response(serializer.data, status=status.HTTP_200_OK)
