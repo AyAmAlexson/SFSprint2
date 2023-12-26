@@ -2,6 +2,7 @@ import environ
 from pathlib import Path
 import os
 from django.core.wsgi import get_wsgi_application
+import dj_database_url
 
 env = environ.Env()
 environ.Env.read_env()
@@ -57,12 +58,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SFSprint2.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+DATABASE_URL = env('DATABASE_URL')
+db_from_env = dj_database_url.config(default=DATABASE_URL)
+DATABASES = {'default': db_from_env}
+CONN_MAX_AGE = int(os.environ.get("CONN_MAX_AGE", 600))
 
 AUTH_PASSWORD_VALIDATORS = [
     {
