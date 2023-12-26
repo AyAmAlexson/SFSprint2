@@ -22,6 +22,17 @@ class SubmitDataView(APIView):
         except json.JSONDecodeError:
             return Response({'status': 400, 'message': 'Bad Request', 'id': None}, status=status.HTTP_400_BAD_REQUEST)
 
+class AddNewUser(APIView):
+    def post(self, request, *arg, **kwargs):
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            result = UserManager.submit_data(data)
+            return Response(result, status=status.HTTP_200_OK)
+        
+        except json.JSONDecodeError:
+            return Response({'status': 400, 'message': 'Input Data Error', 'id': None}, status=status.HTTP_400_BAD_REQUEST)
+
+
 class GetMountainPassView(APIView):
     def get(self, request, id, *args, **kwargs):
         mountain_pass = get_object_or_404(MountainPass, pk=id)

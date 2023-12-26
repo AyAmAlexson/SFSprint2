@@ -37,3 +37,26 @@ class MountainPassManager:
         except Exception as e:
             return {"status": 500, "message": str(e), "id": None}
 
+class UserManager:
+    @staticmethod
+    def submit_data(cls, data, request=None):
+        try:
+            new_user = User.objects.create(
+                email=data['email'],
+                phone=data['phone'],
+                name=data['name'],
+                fam=data['fam'],
+                otc=data['otc'],
+            )
+            
+
+            if request and isinstance(request, DRFRequest):
+                context = {'request': request}
+            else:
+                context = {}
+            serializer = UserSerializer(new_user, context=context)
+
+            return {"status": 200, "message": "Пользователь создан успешно", "id": new_user.id}
+
+        except Exception as e:
+            return {"status": 500, "message": str(e), "id": None}
