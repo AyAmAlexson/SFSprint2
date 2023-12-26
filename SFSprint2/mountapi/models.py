@@ -8,6 +8,9 @@ class User(models.Model):
    fam = models.CharField(max_length=30)
    otc = models.CharField(max_length=30)
 
+   class Meta:
+      db_table = 'mountain_user'
+
 class MountainPass(models.Model):
    beauty_title = models.CharField(max_length=255)
    title = models.CharField(max_length=255)
