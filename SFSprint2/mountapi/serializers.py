@@ -14,6 +14,10 @@ class PassImageSerializer(serializers.HyperlinkedModelSerializer):
 
 class MountainPassSerializer(serializers.HyperlinkedModelSerializer):
     images = PassImageSerializer(many=True, read_only=True)
+    url = serializers.HyperlinkedIdentityField(
+        view_name='get_mountain_pass',  # Make sure this matches the name in urlpatterns
+        lookup_field='pk'
+    )
     detail_url = serializers.HyperlinkedIdentityField(
         view_name='get_mountain_pass',  # Make sure this matches the name in urlpatterns
         lookup_field='pk'
