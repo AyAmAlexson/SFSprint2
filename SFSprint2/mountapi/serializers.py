@@ -32,7 +32,7 @@ class MountainPassSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = MountainPass
         fields = [
-            'user'
+            'user',
             'add_time',
             'beauty_title',
             'title',
