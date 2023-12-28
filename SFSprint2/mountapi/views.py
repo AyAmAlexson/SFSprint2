@@ -78,3 +78,4 @@ class GetUserMountainPassListView(APIView):
         mountain_pass_list = MountainPass.objects.filter(user__email=email)
         serializer = MountainPassSerializer(mountain_pass_list, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+

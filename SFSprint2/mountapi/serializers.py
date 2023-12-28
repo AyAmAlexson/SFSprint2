@@ -27,18 +27,22 @@ class PassImageSerializer(serializers.HyperlinkedModelSerializer):
 class MountainPassSerializer(serializers.HyperlinkedModelSerializer):
     images = PassImageSerializer(many=True, read_only=True)
     user = UserSerializer(many=False,read_only=True)
-    url = serializers.HyperlinkedIdentityField(
-        view_name='get_mountain_pass',
-        lookup_field='pk'
-    )
-    detail_url = serializers.HyperlinkedIdentityField(
-        view_name='get_mountain_pass',
-        lookup_field='pk'
-    )
+
 
     class Meta:
         model = MountainPass
-        fields = '__all__'
+        fields = [
+            'user'
+            'add_time',
+            'beauty_title',
+            'title',
+            'other_titles',
+            'connect',
+            'status',
+            'coord',
+            'images',
+            'level',
+        ]
 
     def __init__(self, *args, **kwargs):
         context = kwargs.pop('context', None)
