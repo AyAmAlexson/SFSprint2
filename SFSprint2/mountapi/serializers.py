@@ -26,7 +26,7 @@ class PassImageSerializer(serializers.HyperlinkedModelSerializer):
 
 class MountainPassSerializer(serializers.HyperlinkedModelSerializer):
     images = PassImageSerializer(many=True, read_only=True)
-    user = UserSerializer(many=False,read_only=True)
+    user = UserSerializer(many=False, read_only=True)
 
 
     class Meta:
