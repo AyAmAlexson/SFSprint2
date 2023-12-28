@@ -42,7 +42,7 @@ class GetMountainPassView(APIView):
     
 
 class EditMountainPassView(APIView):
-    def patch(self, request, id, *args, **kwargs):
+    def patch(self, request, pk, *args, **kwargs):
         try:
             data = json.loads(request.body.decode('utf-8'))
             user_id = data.get('user_id')
