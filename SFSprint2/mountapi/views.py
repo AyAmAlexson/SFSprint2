@@ -45,13 +45,10 @@ class EditMountainPassView(APIView):
     def patch(self, request, pk, *args, **kwargs):
         try:
             data = json.loads(request.body.decode('utf-8'))
-            user_id = data.get('user_id')
+            mountain_pass = get_object_or_404(MountainPass, pk=pk)
 
-            if not user_id:
-                return Response({'status': 400, 'message': 'Bad Request', 'id': None}, status=status.HTTP_400_BAD_REQUEST)
-
-            mountain_pass = get_object_or_404(MountainPass, pk=id)
-
+            if not mountain_pass:
+                return Response({'status': 400, 'message': 'Mountain Pass Not Found', 'id': None}, status=status.HTTP_400_BAD_REQUEST)
 
             if mountain_pass.status != 'new':
                 return Response({'status': 0, 'message': 'Нельзя редактировать запись в статусе, отличном от "new".'}, status=status.HTTP_400_BAD_REQUEST)
