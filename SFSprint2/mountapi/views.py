@@ -75,8 +75,7 @@ class EditMountainPassView(APIView):
 class GetUserMountainPassListView(APIView):
     def get(self, request, *args, **kwargs):
         email = request.query_params.get('user__email', '')
-        requested_user = User.objects.get(email=email)
-        mountain_pass_list = MountainPass.objects.filter(user=requested_user.id)
+        mountain_pass_list = MountainPass.objects.filter(user__email=email)
         serializer = MountainPassSerializer(mountain_pass_list, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
