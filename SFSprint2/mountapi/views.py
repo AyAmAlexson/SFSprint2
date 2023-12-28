@@ -57,7 +57,7 @@ class EditMountainPassView(APIView):
             mountain_pass.title = data['title'] if 'title' in data else mountain_pass.title
             mountain_pass.other_titles = data['other_titles'] if 'other_titles' in data else mountain_pass.other_titles
             mountain_pass.connect = data['connect'] if 'connect' in data else mountain_pass.connect
-            mountain_pass.coord = data['coords'] if 'coords' in data else mountain_pass.coords
+            mountain_pass.coord = data['coords'] if 'coord' in data else mountain_pass.coord
             mountain_pass.level = data['level'] if 'level' in data else mountain_pass.level
 
 
