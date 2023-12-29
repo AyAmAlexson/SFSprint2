@@ -6,6 +6,8 @@ from .serializers import MountainPassSerializer
 from .models import *
 import json
 from django.shortcuts import get_object_or_404
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 class SubmitDataView(APIView):
     def post(self, request, *args, **kwargs):
@@ -70,6 +72,17 @@ class EditMountainPassView(APIView):
 
 
 class GetUserMountainPassListView(APIView):
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter(
+                'user__email',
+                openapi.IN_QUERY,
+                description="Email address of the user",
+                type=openapi.TYPE_STRING,
+            ),
+        ],
+        responses={200: "OK - Success", 400: "Bad Request"},
+    )
     def get(self, request, *args, **kwargs):
         email = request.query_params.get('user__email', '')
         mountain_pass_list = MountainPass.objects.filter(user__email=email)
