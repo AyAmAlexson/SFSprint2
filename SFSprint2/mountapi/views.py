@@ -105,7 +105,10 @@ class GetMountainPassView(APIView):
 class EditMountainPassView(APIView):
     @swagger_auto_schema(
         manual_parameters=[
-            openapi.Parameter('pk', openapi.IN_PATH, type=openapi.TYPE_INTEGER, description='ID of the mountain pass to edit'),
+            parameter for parameter in [
+                openapi.Parameter('pk', openapi.IN_PATH, type=openapi.TYPE_INTEGER,
+                                  description='ID of the mountain pass to edit'),
+            ] if parameter.name != 'id'
         ],
         request_body=openapi.Schema(
             type=openapi.TYPE_OBJECT,
@@ -114,7 +117,7 @@ class EditMountainPassView(APIView):
                 'title': openapi.Schema(type=openapi.TYPE_STRING),
                 'other_titles': openapi.Schema(type=openapi.TYPE_STRING),
                 'connect': openapi.Schema(type=openapi.TYPE_STRING),
-                'coord': openapi.Schema(
+                'coords': openapi.Schema(
                     type=openapi.TYPE_OBJECT,
                     properties={
                         'latitude': openapi.Schema(type=openapi.TYPE_STRING),
