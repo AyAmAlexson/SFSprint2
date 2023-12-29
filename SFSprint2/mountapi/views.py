@@ -8,6 +8,7 @@ import json
 from django.shortcuts import get_object_or_404
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
+from rest_framework.parsers import JSONParser
 
 class SubmitDataView(APIView):
     @swagger_auto_schema(
@@ -70,6 +71,7 @@ class SubmitDataView(APIView):
             return Response({'status': 400, 'message': "Can't read the data", 'id': None}, status=status.HTTP_400_BAD_REQUEST)
 
 class AddNewUser(APIView):
+    parser_classes = [JSONParser]
     @swagger_auto_schema(
         request_body=openapi.Schema(
             type=openapi.TYPE_OBJECT,
