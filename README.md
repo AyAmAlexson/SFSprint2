@@ -9,6 +9,14 @@ This Django project implements a REST API for managing mountain passes. Tourists
 The API service is available online at
 https://sfsprintapi-25a2a6aeebf2.herokuapp.com/api/
 
+## Swagger
+
+https://sfsprintapi-25a2a6aeebf2.herokuapp.com/swagger/
+
+## Redoc
+
+https://sfsprintapi-25a2a6aeebf2.herokuapp.com/redoc/
+
 ## API Endpoints
 
 ### `POST /api/submitData/`
@@ -22,8 +30,10 @@ Tourists submit information about a mountain pass through this endpoint.
 - Body: JSON data as described in the project specifications
 
 Example (using httpie):
-- http POST https://sfsprintapi-25a2a6aeebf2.herokuapp.com/api/submitData/ beauty_title="пер. " title="Пхия" other_titles="Триев" connect="" add_time="2021-09-22 13:18:13" user=4 coords:='{"latitude": "45.3842", "longitude": "7.1525", "height": "1200"}' level:='{"winter": "", "summer": "1А", "autumn": "1А", "spring": ""}' images:='[{"data": "<картинка1>", "title": "Седловина"}, {"data": "<картинка>", "title": "Подъём"}]'
 
+```
+http POST https://sfsprintapi-25a2a6aeebf2.herokuapp.com/api/submitData/ beauty_title="пер. " title="Пхия" other_titles="Триев" connect="" add_time="2021-09-22 13:18:13" user=4 coords:='{"latitude": "45.3842", "longitude": "7.1525", "height": "1200"}' level:='{"winter": "", "summer": "1А", "autumn": "1А", "spring": ""}' images:='[{"data": "<картинка1>", "title": "Седловина"}, {"data": "<картинка>", "title": "Подъём"}]'
+```
 #### Response:
 
 - Status Codes:
@@ -52,8 +62,10 @@ Registers a new user
 - Body: JSON data as described in the project specifications
 
 Example (using httpie):
-- http POST https://sfsprintapi-25a2a6aeebf2.herokuapp.com/api/createUser/ email="ivan@ivanov.com" phone="+1234567890" name="Иван" fam="Иванов" otc="Фомич"
 
+```
+http POST https://sfsprintapi-25a2a6aeebf2.herokuapp.com/api/createUser/ email="ivan@ivanov.com" phone="+1234567890" name="Иван" fam="Иванов" otc="Фомич"
+```
 #### Response:
 
 - Status Codes:
@@ -71,8 +83,10 @@ Retrieve information about a specific mountain pass by its ID.
 - Method: `GET`
 
 Example (using httpie):
-- http GET https://sfsprintapi-25a2a6aeebf2.herokuapp.com/api/getData/1/
 
+```
+http GET https://sfsprintapi-25a2a6aeebf2.herokuapp.com/api/getData/1/
+```
 
 #### Response:
 
@@ -92,7 +106,9 @@ Edit an existing mountain pass if it is in the "new" status.
 - Body: JSON data with fields to be updated
 
 Example (using httpie):
-- http PATCH https://sfsprintapi-25a2a6aeebf2.herokuapp.com/api/editData/2/ beauty_title="пер. " title="Боржоми" other_titles="Апсны" connect="Cакартвело" 
+```
+http PATCH https://sfsprintapi-25a2a6aeebf2.herokuapp.com/api/editData/2/ beauty_title="пер. " title="Боржоми" other_titles="Апсны" connect="Cакартвело" 
+```
 
 #### Response:
 
@@ -119,8 +135,9 @@ List data about all mountain passes submitted by a user with a specific email.
 - Method: `GET`
 
 Example (using httpie):
-- http GET https://sfsprintapi-25a2a6aeebf2.herokuapp.com/api/userMountainPassList/\?user__email=ivan123@ivanov123.com
-
+```
+http GET https://sfsprintapi-25a2a6aeebf2.herokuapp.com/api/userMountainPassList/\?user__email=ivan123@ivanov123.com
+```
 #### Response:
 
 - Status Code:
