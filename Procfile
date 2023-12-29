@@ -1,1 +1,1 @@
-web: gunicorn SFSPrint2.SFSprint2.wsgi
+web: gunicorn --chdir SFSprint2 SFSPrint2.wsgi
