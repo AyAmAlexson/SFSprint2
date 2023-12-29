@@ -14,6 +14,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = [
     'sfsprintapi-25a2a6aeebf2.herokuapp.com',
+    '127.0.0.1',
 ]
 
 
@@ -89,7 +90,7 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
