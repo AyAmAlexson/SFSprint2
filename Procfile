@@ -1,1 +1,1 @@
-web: gunicorn SFSprint2.wsgi
+web: gunicorn SFSPrint2.SFSprint2.wsgi
