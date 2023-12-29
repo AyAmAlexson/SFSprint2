@@ -77,7 +77,7 @@ class GetUserMountainPassListView(APIView):
             openapi.Parameter(
                 'user__email',
                 openapi.IN_QUERY,
-                description="Email address of the user",
+                description="Введите email пользователя ...?user_email=<user@domain.com>",
                 type=openapi.TYPE_STRING,
             ),
         ],
