@@ -103,6 +103,43 @@ class GetMountainPassView(APIView):
 
 
 class EditMountainPassView(APIView):
+    @swagger_auto_schema(
+        manual_parameters=[
+            openapi.Parameter('pk', openapi.IN_PATH, type=openapi.TYPE_INTEGER, description='ID of the mountain pass to edit'),
+        ],
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={
+                'beauty_title': openapi.Schema(type=openapi.TYPE_STRING),
+                'title': openapi.Schema(type=openapi.TYPE_STRING),
+                'other_titles': openapi.Schema(type=openapi.TYPE_STRING),
+                'connect': openapi.Schema(type=openapi.TYPE_STRING),
+                'coord': openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'latitude': openapi.Schema(type=openapi.TYPE_STRING),
+                        'longitude': openapi.Schema(type=openapi.TYPE_STRING),
+                        'height': openapi.Schema(type=openapi.TYPE_STRING),
+                    },
+                    required=['latitude', 'longitude', 'height'],
+                ),
+                'level': openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        'winter': openapi.Schema(type=openapi.TYPE_STRING),
+                        'summer': openapi.Schema(type=openapi.TYPE_STRING),
+                        'autumn': openapi.Schema(type=openapi.TYPE_STRING),
+                        'spring': openapi.Schema(type=openapi.TYPE_STRING),
+                    },
+                ),
+            },
+        ),
+        responses={
+            200: "OK - Success",
+            400: "Bad Request",
+            404: "Not Found",
+        },
+    )
     def patch(self, request, pk, *args, **kwargs):
         try:
             data = json.loads(request.body.decode('utf-8'))
@@ -118,7 +155,7 @@ class EditMountainPassView(APIView):
             mountain_pass.title = data['title'] if 'title' in data else mountain_pass.title
             mountain_pass.other_titles = data['other_titles'] if 'other_titles' in data else mountain_pass.other_titles
             mountain_pass.connect = data['connect'] if 'connect' in data else mountain_pass.connect
-            mountain_pass.coord = data['coords'] if 'coord' in data else mountain_pass.coord
+            mountain_pass.coord = data['coord'] if 'coord' in data else mountain_pass.coord
             mountain_pass.level = data['level'] if 'level' in data else mountain_pass.level
 
 
