@@ -25,6 +25,20 @@ class SubmitDataView(APIView):
             return Response({'status': 400, 'message': "Can't read the data", 'id': None}, status=status.HTTP_400_BAD_REQUEST)
 
 class AddNewUser(APIView):
+    @swagger_auto_schema(
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={
+                'email': openapi.Schema(type=openapi.TYPE_STRING),
+                'phone': openapi.Schema(type=openapi.TYPE_STRING),
+                'name': openapi.Schema(type=openapi.TYPE_STRING),
+                'fam': openapi.Schema(type=openapi.TYPE_STRING),
+                'otc': openapi.Schema(type=openapi.TYPE_STRING),
+            },
+            required=['email', 'phone', 'name', 'fam', 'otc'],
+        ),
+        responses={200: "OK - Success", 400: "Bad Request"},
+    )
     def post(self, request, *arg, **kwargs):
         try:
             data = json.loads(request.body.decode('utf-8'))
