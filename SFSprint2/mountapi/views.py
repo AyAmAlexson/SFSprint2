@@ -104,10 +104,6 @@ class GetMountainPassView(APIView):
 
 class EditMountainPassView(APIView):
     @swagger_auto_schema(
-        manual_parameters=[
-            openapi.Parameter('pk', openapi.IN_PATH, type=openapi.TYPE_INTEGER,
-                              description='ID of the mountain pass to edit'),
-        ],
         request_body=openapi.Schema(
             type=openapi.TYPE_OBJECT,
             properties={
@@ -141,7 +137,6 @@ class EditMountainPassView(APIView):
             400: "Bad Request",
             404: "Not Found",
         },
-        exclude=['id'],  # Exclude the 'id' parameter
     )
     def patch(self, request, pk, *args, **kwargs):
         try:
