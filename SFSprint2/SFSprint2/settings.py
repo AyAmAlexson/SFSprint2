@@ -1,7 +1,7 @@
 import environ
 from pathlib import Path
 import os
-from django.core.wsgi import get_wsgi_application
+import django_heroku
 import dj_database_url
 
 env = environ.Env()
@@ -14,6 +14,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = [
     'sfsprintapi-25a2a6aeebf2.herokuapp.com',
+    '127.0.0.1',
 ]
 
 
@@ -24,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg',
     'rest_framework',
     'mountapi',
 ]
@@ -33,9 +35,11 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'SFSprint2.urls'
@@ -88,9 +92,15 @@ USE_I18N = True
 USE_TZ = True
 
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Поменяйте на свой путь
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+django_heroku.settings(locals())

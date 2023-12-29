@@ -1,1 +1,1 @@
-web: gunicorn --chdir SFSprint2 SFSprint2.wsgi
+web: PYTHONPATH=SFSprint2 gunicorn --chdir SFSprint2 SFSprint2.wsgi
