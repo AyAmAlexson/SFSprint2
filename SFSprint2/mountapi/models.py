@@ -24,5 +24,5 @@ class MountainPass(models.Model):
 
 class Image(models.Model):
    mountain_pass = models.ForeignKey(MountainPass, related_name='images', on_delete=models.CASCADE)
-   data = models.CharField()
+   data = models.CharField(max_length=255)
    title = models.CharField(max_length=255)

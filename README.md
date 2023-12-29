@@ -17,6 +17,15 @@ https://sfsprintapi-25a2a6aeebf2.herokuapp.com/swagger/
 
 https://sfsprintapi-25a2a6aeebf2.herokuapp.com/redoc/
 
+## Tests
+
+Tests  should be launched with this command
+```
+
+DJANGO_SETTINGS_MODULE=SFSprint2.settings_test python manage.py test
+```
+
+
 ## API Endpoints
 
 ### `POST /api/submitData/`
