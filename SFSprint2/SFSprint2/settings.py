@@ -42,7 +42,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
 ]
-
 ROOT_URLCONF = 'SFSprint2.urls'
 
 TEMPLATES = [
